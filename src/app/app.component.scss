@@ -1,0 +1,50 @@
+.container {
+  width: 100%;
+}
+
+.horizontal {
+  max-width: 100vw;
+  height: 40px;
+  background: green;
+  margin: 1px 0px;
+  user-select: none;
+  //   text-align: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+
+  .vertical {
+    flex: 1;
+    word-wrap: break-word;
+    width: 100%;
+    height: 100%;
+
+    &:hover {
+      background-color: gray;
+    }
+
+    .booked {
+      background-color: black;
+      width: 100%;
+      height: 100%;
+      &:hover {
+        background-color: gray;
+      }
+    }
+
+    .selected {
+      background-color: aqua;
+      width: 100%;
+      height: 100%;
+      
+      &:hover {
+        background-color: aquamarine;
+      }
+    }
+  }
+
+  &:hover {
+    background: blue;
+  }
+}
+
