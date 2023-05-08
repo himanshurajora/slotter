@@ -8,13 +8,13 @@ interface Slot {
 }
 
 export const dayNumberMap = {
-  0: '*',
-  1: '*',
-  2: '*',
-  3: '*',
-  4: '*',
-  5: '*',
-  6: '*',
+  0: 'Sun',
+  1: 'Mon',
+  2: 'Tue',
+  3: 'Wed',
+  4: 'Thu',
+  5: 'Fri',
+  6: 'Sat',
 };
 
 type DayType = keyof typeof dayNumberMap;
@@ -75,9 +75,7 @@ export class AppComponent {
   hasSlot(day: number, hour: string) {
     return _.some(this.slots, (slot) => {
       return this.isBooked(day, slot.day, hour, slot.hour);
-    })
-      ? 'booked'
-      : '';
+    });
   }
 
   toggleSlot(day: number, hour: string, create: boolean = true) {

@@ -1,33 +1,46 @@
 <div class="master-container">
-  <div class="container">
-    <div *ngFor="let day of days" class="horizontal">
-      <div
-        *ngFor="let hour of hours"
-        class="vertical"
-        (click)="slotClickHandler($event, day, hour)"
-      >
-        <div [className]="hasSlot(day, hour)"></div>
+  <div class="sub-container">
+    <div class="container">
+      <div class="hour-buttons"></div>
+      <div *ngFor="let day of days; let dayIndex = index" class="horizontal">
+        <div
+          *ngFor="let hour of hours; let hourIndex = index"
+          class="vertical"
+          (click)="slotClickHandler($event, day, hour)"
+        >
+          <div class="hour-stamp" *ngIf="dayIndex === 0 && hourIndex % 3 === 0">
+            {{ hour }}
+          </div>
+          <div class="day-stamp" *ngIf="hourIndex === 0">
+            {{ getDay(day) }}
+          </div>
+          <div
+            [ngClass]="{
+              booked: hasSlot(day, hour)
+            }"
+          ></div>
+        </div>
+      </div>
+      <div class="hour-buttons">
+        <button
+          *ngFor="let hour of hours"
+          class="selector-button"
+          [ngClass]="{
+            active: bookedHours[hour]
+          }"
+          (click)="toggleAllSlotsForHour(hour)"
+        ></button>
       </div>
     </div>
-    <div class="hour-buttons">
+    <div class="days-container">
       <button
-        *ngFor="let hour of hours"
-        class="selector-button"
+        *ngFor="let day of days"
+        class="selector-button horizontal day-selector"
         [ngClass]="{
-          active: bookedHours[hour]
+          active: bookedDays[day]
         }"
-        (click)="toggleAllSlotsForHour(hour)"
+        (click)="toggleAllSlotsForADay(day)"
       ></button>
     </div>
-  </div>
-  <div class="days-container">
-    <button
-      *ngFor="let day of days"
-      class="selector-button horizontal day-selector"
-      [ngClass]="{
-        active: bookedDays[day]
-      }"
-      (click)="toggleAllSlotsForADay(day)"
-    ></button>
   </div>
 </div>
